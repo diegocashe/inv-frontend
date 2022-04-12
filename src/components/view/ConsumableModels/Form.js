@@ -21,15 +21,10 @@ export const Fields = ({ control, errors, consumableTypes, consumableColors }) =
                             {...field}
                             id='consumable_color_id'
                             options={consumableColors.map(e => ({ label: e.colors, id: e.id }))}
-                            // options={b}
+                            disableClearable
                             sx={{ width: 400 }}
-
-                            // getOptionLabel={option => {
-                            //     if (option.colors === undefined) return ''
-                            //     return option.colors
-                            // }}  
                             getOptionLabel={option => {
-                                // if (option.colors === undefined) return ''
+                                if (option.label === undefined) return ''
                                 return option.label
                             }}
                             fullWidth
@@ -65,15 +60,12 @@ export const Fields = ({ control, errors, consumableTypes, consumableColors }) =
                             {...field}
                             id='consumable_type_id'
                             options={consumableTypes.map(e => ({ label: e.name, id: e.id }))}
-                            // options={b}
+                            disableClearable
                             sx={{ width: 400 }}
-
                             getOptionLabel={option => {
-                                // if (option.name === undefined) return ''
                                 return option.label
                             }}
                             fullWidth
-
                             renderInput={(params) => {
                                 return (
                                     <TextField label='Tipo de Consumible'

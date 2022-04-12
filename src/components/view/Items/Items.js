@@ -1,34 +1,42 @@
+import { deleteNullsProperties } from "../../../utils/deleteNullsProperties";
+
 export const itemFormater = (data) => {
-    const type = data.item_type_id
-    const item = {
-        item_type_id: data.item_type_id,
+    console.log(data)
+
+    const type = data.item_type_id || -1
+    const item = deleteNullsProperties({
+        id:data.id,
+        item_type_id: type,
         serial: data.serial,
         active_code: data.active_code,
         model_id: data.model_id,
         state_id: data.state_id,
-        description: data.description
-    };
+    });
     if (type === 3) {
-        item.telephony = {
+        item.telephony = deleteNullsProperties({
             imei: data.imei,
             imei2: data.imei2,
             phone_line_id: data.phone_line_id
-        };
+        });
     }
     if (type == 4) {
-        item.phoneline = {
+        item.phoneline = deleteNullsProperties({
             operator_id: data.operator_id,
             number: data.number,
             sim_card: data.sim_card,
             imsi: data.imsi
-        }
+        })
     }
+    console.log(item)
     return item;
 }
 
 export const itemFormateerBeforeEdit = (data) => {
-    const type = data.model.item_type_id
+    console.log(data)
+    const type = data.model.item_type_id ||-1
     const item = {
+        item_type_id: {id:data.model.item_type_id, label:data.model.item_type.name},
+        brand_id : {id:data.model.brand_id, label:data.model.brand.name},
         id: data.id,
         serial: data.serial,
         active_code: data.active_code,
@@ -64,5 +72,6 @@ export const itemFormateerBeforeEdit = (data) => {
         item.sim_card = data.phone_line.sim_card;
         item.imsi = data.phone_line.imsi
     }
+    console.log(item)
     return item;
 }

@@ -11,11 +11,11 @@ export const Nav = () => {
 		<AppBar position='sticky' color='transparent' sx={{ boxShadow: 'none' }} >
 			<Toolbar style={{ display: 'flex' }}>
 				<Box sx={{flexGrow:1}}>
-					<Logo LinkComponent={Link} to='/' >Uork</Logo>
+					<Logo LinkComponent={Link} to='/' >INV</Logo>
 				</Box>
 				<Stack direction={'row'} spacing={2}>
 
-					<Button LinkComponent={Link} to='/about' color='primary' size='small' >Precios</Button>
+					{/* <Button LinkComponent={Link} to='/about' color='primary' size='small' >Precios</Button> */}
 					<Button LinkComponent={Link} to='/about' color='primary' size='small' >Sobre nosotros</Button>
 					<Button LinkComponent={Link} to='/singin' color='primary' size='small' >Registrate</Button>
 					<Button LinkComponent={Link} to='/login' variant='contained' color='primary' size='small' >Ingresa</Button>

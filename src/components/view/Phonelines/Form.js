@@ -21,6 +21,7 @@ export const Fields = ({ control, errors, operators }) => {
                         <Autocomplete
                             {...field}
                             id='operator_id'
+                            disableClearable
                             options={operators.map(e => ({ id: e.id, label: e.name }))}
                             getOptionLabel={option => {
                                 if (option.label === undefined) return ''
@@ -36,7 +37,7 @@ export const Fields = ({ control, errors, operators }) => {
                                             ...params.inputProps,
                                         }}
                                         error={!!errors.operator_id?.type}
-                                        helperTe xt={(errors.operator_id?.type === 'validate' || errors.operator_id?.type === 'required') && "El codigo de consumible es requerido"}
+                                        helperText={(errors.operator_id?.type === 'validate' || errors.operator_id?.type === 'required') && "El codigo de consumible es requerido"}
                                     />)
                             }}
                             isOptionEqualToValue={(option, value) => option.id === value.id}

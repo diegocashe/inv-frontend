@@ -11,6 +11,7 @@ const TelephonyView = () => {
 
     const phoneLines = (settings?.phoneLines) ? settings.phoneLines.map(e => ({ value: e.id, label: e.number })) : null
 
+    console.log(rows)
     const columns = [
         { field: 'id', headerName: 'ID', width: 90 },
         { field: 'imei', headerName: 'IMEI 1', width: 150, editable: true },

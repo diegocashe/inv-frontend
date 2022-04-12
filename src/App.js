@@ -1,19 +1,24 @@
 import { BrowserRouter } from "react-router-dom";
-import { ThemeProvider } from '@mui/material/styles'
-import { theme1 } from "./theme/Themes";
 import AppRoutes from "./config/AppRoutes";
 import { UserContextProvider } from "./context/UserContext";
-
+import { ThemeContextProvider } from "./context/ThemeContext";
+import { LoadAppContextProvider } from "./context/LoadAppContext";
+import "@fontsource/manrope"
+import { CookiesProvider } from "react-cookie";
 function App() {
-  
+
   return (
-    <BrowserRouter>
-      <UserContextProvider>
-        <ThemeProvider theme={theme1} >
-          <AppRoutes />
-        </ThemeProvider>
-      </UserContextProvider>
-    </BrowserRouter>
+    <CookiesProvider>
+      <BrowserRouter>
+        <UserContextProvider>
+          <ThemeContextProvider >
+            <LoadAppContextProvider>
+              <AppRoutes />
+            </LoadAppContextProvider>
+          </ThemeContextProvider>
+        </UserContextProvider>
+      </BrowserRouter>
+    </CookiesProvider>
   );
 }
 

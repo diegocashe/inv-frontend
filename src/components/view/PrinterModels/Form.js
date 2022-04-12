@@ -20,11 +20,10 @@ export const Fields = ({ control, errors, models, printerTypes, printTypes, cons
                         }}
                         render={({ field }) => (
                             <Autocomplete
-                                // disabled={!printType.enabled}
                                 {...field}
                                 id='printer_type_id'
                                 options={printerTypes.map(e => ({ label: e.name, id: e.id }))}
-                                // options={b}
+                                disableClearable
                                 getOptionLabel={option => {
                                     if (option.label === undefined) return ''
                                     return option.label
@@ -57,11 +56,10 @@ export const Fields = ({ control, errors, models, printerTypes, printTypes, cons
                         }}
                         render={({ field }) => (
                             <Autocomplete
-                                // disabled={!printType.enabled}
                                 {...field}
                                 id='print_types_id '
                                 options={printTypes.map(e => ({ label: e.name, id: e.id }))}
-                                // options={b}
+                                disableClearable
                                 getOptionLabel={option => {
                                     if (option.label === undefined) return ''
                                     return option.label
@@ -80,7 +78,6 @@ export const Fields = ({ control, errors, models, printerTypes, printTypes, cons
                                         />)
                                 }}
                                 isOptionEqualToValue={(option, value) => option.id === value.id}
-                                // onInputChange={(_, data) => console.log(data)}
                                 onChange={(_, data) => field.onChange(data)}
                             />
                         )}
@@ -99,6 +96,7 @@ export const Fields = ({ control, errors, models, printerTypes, printTypes, cons
                             {...field}
                             id='consumable_id'
                             options={consumableModels.map(e => ({ label: e.model.code, id: e.id }))}
+                            disableClearable
                             fullWidth
                             getOptionLabel={option => {
                                 if (option?.label === undefined) return ''

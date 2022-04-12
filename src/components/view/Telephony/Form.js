@@ -47,6 +47,7 @@ export const Fields = ({ control, errors, phoneLines }) => {
                             // disabled={!brand.enabled}
                             {...field}
                             fullWidth
+                            disableClearable
                             id='phone_line_id'
                             options={phoneLines?.map(e => ({ id: e.id, label: e.number }))}
                             getOptionLabel={option => {

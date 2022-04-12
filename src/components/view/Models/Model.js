@@ -1,17 +1,10 @@
 import { SERVER_DIR } from "../../../const/ServerUrl"
 import { MODEL } from "../../../const/routes"
+import { deleteNullsProperties } from "../../../utils/deleteNullsProperties"
 
 const MODEL_URL = `${SERVER_DIR}/api/${MODEL}`
 
-const deleteNullsProperties = (object) => {
-    const resultObj = {}
-    for (const key in object) {
-        if (!(object[key] === undefined || object[key] === null && key !== 'id')) {
-            resultObj[key] = object[key];
-        }
-    }
-    return resultObj;
-}
+
 
 export const modelsAddDataFormater = function (model) {
     console.log(model)

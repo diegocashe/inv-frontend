@@ -47,3 +47,19 @@ export const menuList = [
     models(),
     others(),
 ]
+
+
+export const regularMenuList = [
+
+]
+
+export const supportMenuList = [
+    { name: 'Dashboard', route: '/', Icon: Dashboard },
+    { name: 'Inventario', route: '/items', Icon: Inventory },
+    { name: 'Asignaciones', route: '/allocations', Icon: LocalShippingIcon },
+    { name: 'Usuarios', route: '/users', Icon: SupervisedUserCircle },
+    { name: 'Modelos', route: '/models', Icon: CatchingPokemon },
+    detailInventory(),
+    models(),
+    others(),
+]

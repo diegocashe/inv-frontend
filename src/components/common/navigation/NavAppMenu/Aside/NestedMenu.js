@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -8,16 +8,22 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import StarBorder from '@mui/icons-material/StarBorder';
-import { useNavigate } from 'react-router-dom';
 import {
-  Link as RouterLink,
-  LinkProps as RouterLinkProps,
-} from 'react-router-dom';
+    Link as RouterLink,
+    LinkProps as RouterLinkProps,
+  } from 'react-router-dom';
+import React from "react";
+  
 
 export const NestedMenu = ({ ListIcon = InboxIcon, listName = '', ListItems = [{}] }) => {
 
-  const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false);
 
+    const handleClick = () => {
+        setOpen(!open);
+    };
+
+    
   function ListItemLink(props) {
     const { icon, name, to, children } = props;
 
@@ -38,32 +44,28 @@ export const NestedMenu = ({ ListIcon = InboxIcon, listName = '', ListItems = [{
     );
   }
 
-  const handleClick = () => {
-    setOpen(!open);
-  };
+    return (
+        <>
+            <ListItemButton onClick={handleClick}>
+                <ListItemIcon>
+                    {<ListIcon sx={{ color: 'nav.aside.text' }} />}
+                </ListItemIcon>
+                <ListItemText primary={listName} />
+                {open ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Collapse in={open} timeout="auto" unmountOnExit sx={{bgcolor:'#0000009e'}}>
+                <List disablePadding>
+                    {ListItems.map((e, i) => (
+                        <ListItemLink sx={{ pl: 4 }} to={e.route} key={e.route} >
+                            <ListItemIcon>
+                                <e.Icon sx={{ color: 'nav.aside.text' }} />
+                            </ListItemIcon>
+                            <ListItemText primary={e.name} />
+                        </ListItemLink>
+                    ))}
 
-  return (
-    <>
-      <ListItemButton onClick={handleClick}>
-        <ListItemIcon>
-          {<ListIcon sx={{ color: 'ligth.main' }} />}
-        </ListItemIcon>
-        <ListItemText primary={listName} />
-        {open ? <ExpandLess /> : <ExpandMore />}
-      </ListItemButton>
-      <Collapse in={open} timeout="auto" unmountOnExit sx={{bgcolor:'#0000009e'}}>
-        <List disablePadding>
-          {ListItems.map((e, i) => (
-            <ListItemLink sx={{ pl: 4 }} to={e.route} key={e.route} >
-              <ListItemIcon>
-                <e.Icon sx={{ color: 'ligth.main' }} />
-              </ListItemIcon>
-              <ListItemText primary={e.name} />
-            </ListItemLink>
-          ))}
-
-        </List>
-      </Collapse>
-    </>
-  )
+                </List>
+            </Collapse>
+        </>
+    )
 }

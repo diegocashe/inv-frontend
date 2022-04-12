@@ -20,6 +20,7 @@ export const Fields = ({ control, errors, models, radioTypes, radioBands, radioF
                         {...field}
                         id='band_id'
                         options={radioBands.map(e => ({ label: e.name, id: e.id }))}
+                        disableClearable
                         getOptionLabel={option => {
                             if (option.label === undefined) return ''
                             return option.label
@@ -55,6 +56,7 @@ export const Fields = ({ control, errors, models, radioTypes, radioBands, radioF
                         {...field}
                         id='frecuency_id'
                         options={radioFrecuency.map(e => ({ label: e.frequency, id: e.id }))}
+                        disableClearable
                         getOptionLabel={option => {
                             if (option.label === undefined) return ''
                             return option.label
@@ -92,6 +94,7 @@ export const Fields = ({ control, errors, models, radioTypes, radioBands, radioF
                     {...field}
                     id='radio_types_id'
                     options={radioTypes.map(e => ({ label: e.name, id: e.id }))}
+                    disableClearable
                     getOptionLabel={option => {
                         if (option.label === undefined) return ''
                         return option.label

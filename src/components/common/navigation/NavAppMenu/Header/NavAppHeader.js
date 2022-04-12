@@ -16,11 +16,12 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
-import { Button, ButtonBase }from '@mui/material'
+import { Link } from 'react-router-dom';
 import {
   Link as RouterLink,
   LinkProps as RouterLinkProps,
 } from 'react-router-dom';
+
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -62,8 +63,10 @@ const Search = styled('div')(({ theme }) => ({
     },
   }));
 
-
-
+  const StyledAppBar = styled(AppBar)(({theme})=>({
+    background:theme.palette.nav.header,
+    position:'static'
+  }))
   
 export default function NavAppHeader({ toggleAsideMenu }) {
 
@@ -113,6 +116,7 @@ export default function NavAppHeader({ toggleAsideMenu }) {
       );
     }
   
+  
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
       <Menu
@@ -134,8 +138,7 @@ export default function NavAppHeader({ toggleAsideMenu }) {
         <MenuItemLink onClick={handleMenuClose} to='/account' >Mi cuenta</MenuItemLink>
       </Menu>
     );
-
-
+  
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
       <Menu
@@ -183,14 +186,14 @@ export default function NavAppHeader({ toggleAsideMenu }) {
           >
             <AccountCircle />
           </IconButton>
-          <p>Perfil</p>
+          <p>Profile</p>
         </MenuItem>
       </Menu>
     );
   
     return (
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+        <StyledAppBar>
           <Toolbar>
             <IconButton
               size="large"
@@ -208,7 +211,7 @@ export default function NavAppHeader({ toggleAsideMenu }) {
               component="div"
               sx={{ display: { xs: 'none', sm: 'block' } }}
             >
-              INV
+              Uork
             </Typography>
             <Search>
               <SearchIconWrapper>
@@ -260,7 +263,7 @@ export default function NavAppHeader({ toggleAsideMenu }) {
               </IconButton>
             </Box>
           </Toolbar>
-        </AppBar>
+        </StyledAppBar>
         {renderMobileMenu}
         {renderMenu}
       </Box>

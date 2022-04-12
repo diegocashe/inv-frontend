@@ -29,7 +29,7 @@ export const ItemsView = () => {
 
     const onPut = async (data) => {
         const item = itemFormater(data)
-        const result = await post(item)
+        const result = await put(item)
         return result
     }
 
@@ -74,19 +74,32 @@ export const ItemsView = () => {
         return (
             <TableTemplateContainer
                 defaultValues={{
+                    item_type_id: { id: -1, label: '' },
+                    brand_id: { id: -1, label: '' },
                     active_code: "",
                     description: "",
                     serial: "",
                     model_id: { id: -1, label: '' },
                     state_id: { id: -1, label: '' },
                     status_id: { id: -1, label: '' },
+
+                    //phoneline 
+                    operator_id: { id: -1, label: '' },
+                    number: '',
+                    sim_card: '',
+                    imsi: '',
+
+                    // telephony
+                    phone_line_id: { id: -1, label: '' },
+                    imei: '',
+                    imei2: '',
                 }}
                 modelName='Inventario General'
 
                 fetchActions={{
                     get: getAll,
                     post: onPost,
-                    put: put,
+                    put: onPut,
                     deleteRowByid: deleteRow
                 }}
                 columns={columns}

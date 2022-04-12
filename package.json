@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
+    "@fontsource/manrope": "^4.5.6",
     "@mui/icons-material": "^5.4.2",
     "@mui/lab": "^5.0.0-alpha.70",
     "@mui/material": "^5.4.3",
@@ -16,6 +17,7 @@
     "dayjs": "^1.10.8",
     "react": "^17.0.2",
     "react-chartjs-2": "^4.0.1",
+    "react-cookie": "^4.1.1",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.27.1",
     "react-router-dom": "^6.2.1",

@@ -1,29 +1,28 @@
-import React, { useState } from 'react';
+
 import { List, ListSubheader, ListItemButton, ListItemIcon, styled, ListItemText } from "@mui/material"
+import { Box } from "@mui/system";
 import { NestedMenu } from "./NestedMenu";
 import {
   Link as RouterLink,
   LinkProps as RouterLinkProps,
 } from 'react-router-dom';
+import React from "react";
+
 
 export const AsideMenu = ({ menuList }) => {
+
   const ListStyled = styled(List)(({ theme }) => ({
-    backgroundColor: theme.palette.primary.main, //alpha(theme.palette.primary.main, 0.25),
-    // color: theme.palette.ligth.main,
-    color: '#f1f1f1',
+    backgroundColor: theme.palette.nav.aside.background, //alpha(theme.palette.primary.main, 0.25),
+    color: theme.palette.nav.aside.text,
     '&:hover': {
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: theme.palette.nav.aside.background,
     },
     minWidth: 'fit-content',
     ...theme.typography.h5
   }))
 
-  const ListItemBtnSty = styled(ListItemButton)(({ theme }) => ({
-    color: theme.palette.ligth.main,
-  }))
-
   function ListItemLink(props) {
-    const { icon, name, to, children } = props;
+    const { to, children } = props;
 
     const renderLink = React.useMemo(
       () =>
@@ -42,30 +41,32 @@ export const AsideMenu = ({ menuList }) => {
     );
   }
 
-
   return (
-    <ListStyled
-      subheader={
-        <ListSubheader sx={{ backgroundColor: 'primary.main', color: 'ligth.main' }}>
-          Menu
-        </ListSubheader>
-      }>
-      {menuList.map((e, i) => {
-        if (e instanceof Map) {
-          const [description, items] = [e.get('description'), e.get('items')]
-          return <NestedMenu listName={description.name} ListIcon={description.Icon} ListItems={items} key={i} />
-        }
+    <Box sx={{ width: '280px' }}>
+      <ListStyled
+        subheader={
+          <ListSubheader sx={{ backgroundColor: 'nav.aside.background', color: 'nav.aside.text' }}>
+            Menu
+          </ListSubheader>
+        }>
+        {menuList.map((e, i) => {
+          if (e instanceof Map) {
+            const [description, items] = [e.get('description'), e.get('items')]
+            return <NestedMenu listName={description.name} ListIcon={description.Icon} ListItems={items} key={i} />
+          }
 
-        if (e instanceof Object) {
-          return (
-            <ListItemLink to={e.route} key={e.route}>
-              <ListItemIcon>{<e.Icon sx={{ color: 'ligth.main' }} />} </ListItemIcon>
-              <ListItemText primary={`${e.name}`} />
-            </ListItemLink>
-          )
-        }
-      })}
-    </ListStyled>
+          if (e instanceof Object) {
+            return (
+              <ListItemLink to={e.route} key={e.route}>
+                <ListItemIcon>{<e.Icon sx={{ color: 'nav.aside.text' }} />} </ListItemIcon>
+                <ListItemText primary={`${e.name}`} />
+              </ListItemLink>
+            )
+          }
+        })}
+      </ListStyled>
+
+    </Box>
   )
 
 }

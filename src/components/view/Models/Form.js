@@ -92,6 +92,7 @@ export const Form = ({ onSubmit, control, errors, onCloseDialog, settings, isLoa
                                     {...field}
                                     id='item_type_id'
                                     options={itemTypes.map(e => ({ label: e.name, id: e.id }))}
+                                    disableClearable
                                     getOptionLabel={option => {
                                         if(option === undefined)return ''
                                         return option.label
@@ -141,6 +142,7 @@ export const Form = ({ onSubmit, control, errors, onCloseDialog, settings, isLoa
                                         {...field}
                                         id='brand_id'
                                         options={brands.map(e => ({  label: e.name, id: e.id }))}
+                                        disableClearable
                                         getOptionLabel={option => {
                                             return option.label
                                         }}
