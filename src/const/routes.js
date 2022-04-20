@@ -15,6 +15,7 @@ export const RADIOS = `radios`
 export const PROFILE = `profile`
 export const LOGIN = `login`
 export const SINGIN = `singin`
+export const ALLOCATIONSPEOPLE = '/allocations/people'
 
 //models
 export const RADIOMODELS = `radio-models`

@@ -24,11 +24,16 @@ import { ConsumableModelsView } from "../components/view/ConsumableModels/Consum
 import { TelephonyModelsView } from "../components/view/TelephonyModelsView/TelephonyModelsView";
 import { regularMenuList, supportMenuList } from "./menuItems";
 import { SinginView } from "../components/view/Singin/SinginView";
+import { ProfileContainerView } from "../components/view/Profile/ProfileContainerView";
+import { ProfileAllocationsView } from "../components/view/Profile/ProfileAllocationsView";
+import { AllocationsContainerView } from "../components/view/Allocations/AllocationsContainerView";
+import { AllocateView } from "../components/view/Allocations/AllocateView";
 
 
 const PublicRoutes = () => {
     return (
         <Routes>
+            <Route path="/" element={<AboutView />} />
             <Route path="/about" element={<AboutView />} />
             <Route path="/login" element={<LoginView />} />
             <Route path="/singin" element={<SinginView />} />
@@ -44,10 +49,19 @@ const SupportRoutes = () => {
             {/* PRINCIPAL */}
             <Route path="/" element={<DashboardView />} />
             <Route path="/items/*" element={<ItemsView />} />
-            <Route path="/allocations/*" element={<AllocationsView />} />
+
+            {/* asignaciones */}
+            <Route path="/allocations/*" element={<AllocationsContainerView />} >
+                <Route index element={<AllocationsView />} />
+                <Route path="assing" element={<AllocateView />} />
+            </Route>
+
 
             {/*PROFILE MENU */}
-            <Route path="/profile/*" element={<ProfileView />} />
+            <Route path="/profile/*" element={<ProfileContainerView />}>
+                <Route index element={<ProfileView />} />
+                <Route path="allocations" element={<ProfileAllocationsView />} />
+            </Route>
 
             {/* OTHERS MENU */}
             <Route path="/brands/*" element={<BrandsView />} />
@@ -88,40 +102,17 @@ const RegularRoutes = () => {
         <Routes>
 
             {/* PRINCIPAL */}
-            <Route path="/" element={<DashboardView />} />
-            <Route path="/items/*" element={<ItemsView />} />
-            <Route path="/allocations/*" element={<AllocationsView />} />
+             <Route path="/" element={<DashboardView />} />
+            {/* <Route path="/allocations/*" element={<AllocationsView />} />  */}
 
             {/*PROFILE MENU */}
-            <Route path="/profile/*" element={<ProfileView />} />
-
-            {/* OTHERS MENU */}
-            <Route path="/brands/*" element={<BrandsView />} />
-
-            {/* DETAILD INVENTORY  */}
-            <Route path="/printers/*" element={<PrintersView />} />
-            <Route path="/consumables/*" element={<ConsumablesView />} />
-            <Route path="/telephony/*" element={<TelephonyView />} />
-            <Route path="/phonelines/*" element={<PhonelinesView />} />
-            <Route path="/radios/*" element={<RadiosView />} />
+            <Route path="/profile/*" element={<ProfileContainerView />}>
+                <Route index element={<ProfileView />} />
+                <Route path="allocations" element={<ProfileAllocationsView />} />
+            </Route>
 
             {/* USERS */}
-            <Route path="users/" element={<UsersView />} >
-
-                <Route path=":userId" element={<UserView />} />
-            </Route>
-
-            {/* MODELS */}
-            <Route path="models" >
-
-                <Route index element={<ModelView />} />
-                <Route path="consumables" element={<ConsumableModelsView />} />
-                <Route path="printers" element={<PrinterModelsView />} />
-                <Route path="telephony" element={<TelephonyModelsView />} />
-                <Route path="radios" element={<RadioModelsView />} />
-
-            </Route>
-
+            <Route path="user/" element={<UserView />} />
 
             {/* NO FOUIND 404 */}
             <Route path="/*" element={<NotFound />} />
@@ -136,21 +127,15 @@ export default function AppRoutes() {
     return (
         <Routes>
             {
-                (false)
+                (user.rol_id === undefined || user.rol_id === -1)
                     ? <Route path="/*" element={<PublicLayout children={<PublicRoutes />} />} />
-                    : <Route path="/*" element={<PrivateLayout
-                        children={<SupportRoutes />
-                            // <>
-                            //     {(true || (user.role === 3)) && <SupportRoutes />}
-                            //     {(user.role === 4) && <></>}
-                            // </>
-                        }
-                        menuList={supportMenuList
-                            // (true || (user.role === 3)) ? supportMenuList
-                            // (true) ? supportMenuList
-                            //     : (user.role === 4) && regularMenuList
-                        }
-                    />} />
+                    : (user.rol_id === 2)
+                        ? <Route path="/*" element={<PrivateLayout
+                            children={<SupportRoutes />} menuList={supportMenuList} />}
+                        />
+                        : (user.rol_id === 3) && <Route path="/*" element={<PrivateLayout
+                            children={<RegularRoutes />} menuList={regularMenuList} />}
+                        />
             }
         </Routes>
     )

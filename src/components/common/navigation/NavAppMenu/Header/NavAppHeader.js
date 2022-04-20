@@ -211,7 +211,7 @@ export default function NavAppHeader({ toggleAsideMenu }) {
               component="div"
               sx={{ display: { xs: 'none', sm: 'block' } }}
             >
-              Uork
+                Inv
             </Typography>
             <Search>
               <SearchIconWrapper>

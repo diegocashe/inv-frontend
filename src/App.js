@@ -5,6 +5,7 @@ import { ThemeContextProvider } from "./context/ThemeContext";
 import { LoadAppContextProvider } from "./context/LoadAppContext";
 import "@fontsource/manrope"
 import { CookiesProvider } from "react-cookie";
+import { SnackbarContextProvider } from "./context/SnackbarContext";
 function App() {
 
   return (
@@ -13,7 +14,9 @@ function App() {
         <UserContextProvider>
           <ThemeContextProvider >
             <LoadAppContextProvider>
-              <AppRoutes />
+              <SnackbarContextProvider>
+                <AppRoutes />
+              </SnackbarContextProvider>
             </LoadAppContextProvider>
           </ThemeContextProvider>
         </UserContextProvider>

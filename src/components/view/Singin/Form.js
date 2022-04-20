@@ -28,10 +28,9 @@ export const Fields = ({
     getValues = () => { },
 }) => (
     <Stack direction={'column'} gap={2}>
-
-        {/* <Stack direction={'row'} gap={2}>
+        <Stack direction={'row'} gap={2}>
             <Controller
-                name='firstName'
+                name='first_name'
                 control={control}
                 rules={{ required: true, }}
                 render={({ field }) =>
@@ -44,7 +43,7 @@ export const Fields = ({
                 }
             />
             <Controller
-                name='lastName'
+                name='last_name'
                 control={control}
                 rules={{ required: true, }}
                 render={({ field }) =>
@@ -55,9 +54,7 @@ export const Fields = ({
                         helperText={errors.lastName?.type === 'required' && "Por favor, ingresa tus apellidos"} />
                 }
             />
-        </Stack> */}
-
-
+        </Stack>
 
         <Controller
             name='username'
@@ -120,8 +117,8 @@ export const Fields = ({
 export const Form = ({ onSubmit, loading }) => {
     const { control, handleSubmit, formState: { errors }, reset, getValues } = useForm({
         defaultValues: {
-            // firstName: '',
-            // lastName: '',
+            first_name: '',
+            last_name: '',
             username: '',
             password: '',
             confirmPassword: ''
@@ -133,7 +130,7 @@ export const Form = ({ onSubmit, loading }) => {
     const [visiblePassword, setVisiblePassword] = useState(false)
 
     const handleSelectUsertype = (event, value) => {
-        reset()
+        // reset()
         setIsSupport((value === 'true'));
     };
 
@@ -149,7 +146,7 @@ export const Form = ({ onSubmit, loading }) => {
         const { confirmPassword, ...dataBody } = data
         if (isSupport) {
             dataBody.userType = 'support'
-        }else{
+        } else {
             dataBody.userType = 'regular'
         }
         onSubmit(dataBody)
@@ -190,7 +187,7 @@ export const Form = ({ onSubmit, loading }) => {
                     </Stack>
                     <Stack justifyContent={'center'} alignItems={'center'}>
 
-                        
+
                         <ToggleButtonGroup
                             color="primary"
                             value={(isSupport === true) ? 'true' : 'false'}

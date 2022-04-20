@@ -27,6 +27,7 @@ const getPalette = (mode) => ({
                     },
                     aside: {
                         text: '#f1f1f1',
+                        // background: '#1663bf'
                         background: '#083973'
                     },
                 }

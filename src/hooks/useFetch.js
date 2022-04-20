@@ -5,7 +5,7 @@ export function useFetch({ route = '', authtoken = '' }) {
 
     const [token] = useAuthToken()
 
-    const _URL = `${SERVER_DIR}/${route}`
+    const _URL = `${SERVER_DIR}/api/${route}`
 
     const fetching = async (url = '', method = 'GET' || 'POST' || 'PUT' || 'DELETE', body = {}, authTkn = '') => {
         const headers = {

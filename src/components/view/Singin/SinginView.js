@@ -12,7 +12,7 @@ export const SinginView = () => {
 
     const [onLoading, setOnLoading] = useState(false)
     const { loadingApp, setLoadingApp } = useLoadApp()
-    const { user, setUser } = useUser()
+    const { refreshProfile } = useUser()
 
     const [token, setAuthToken] = useAuthToken()
     const { post } = useFetch({ route: SINGIN })
@@ -20,25 +20,15 @@ export const SinginView = () => {
 
     const navigate = useNavigate()
     
-    const beforePostFormateer = (data) =>({
-        
-    })
-
     const handlerOnSingin = async (data) => {
         setOnLoading(true)
-        console.log(data);
-        const { access_token } = await post(data)
+        const { access_token , id} = await post(data)
         if (access_token) {
             setAuthToken(access_token)
+            await refreshProfile(id)
             setOnLoading(false)
-            // console.log(token)
-            setLoadingApp(true)
-            const profile = await getProfile(null, access_token);
-            setUser({ ...profile })
             navigate('/')
-            setLoadingApp(false)
         }
-        // setUser()
     }
 
     return (

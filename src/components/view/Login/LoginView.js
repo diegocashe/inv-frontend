@@ -9,8 +9,7 @@ import { useUser } from '../../../hooks/useUser'
 import { useLoadApp } from '../../../hooks/useLoadApp'
 
 export const LoginView = () => {
-    const { user, setUser } = useUser()
-    const { setLoadingApp } = useLoadApp()
+    const { refreshProfile } = useUser()
 
     const { post: login } = useFetch({ route: LOGIN })
     const { get: getProfile } = useFetch({ route: PROFILE })
@@ -21,15 +20,12 @@ export const LoginView = () => {
 
     const handlerOnSubmit = async (data) => {
         setOnLoading(true)
-        const { access_token } = await login(data)
+        const { access_token, id } = await login(data)
         if (access_token) {
             setAuthToken(access_token)
+            await refreshProfile(id)
             setOnLoading(false)
-            setLoadingApp(true)
-            const profile = await getProfile(access_token);
-            setUser({ ...profile })
             navigate('/')
-            setLoadingApp(false)
         }
     }
 

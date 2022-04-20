@@ -1,4 +1,4 @@
-import { ExpandMore, Send, Dashboard, Inventory, More, Apple, CatchingPokemon, Print, PrintTwoTone, Radio, Phone, PhoneCallback, SupervisedUserCircle } from "@mui/icons-material";
+import { ExpandMore, Send, Dashboard, Inventory, More, Apple, CatchingPokemon, Print, PrintTwoTone, Radio, Phone, PhoneCallback, SupervisedUserCircle, AccountCircle } from "@mui/icons-material";
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 
 const others = () => {
@@ -6,7 +6,7 @@ const others = () => {
     p.set('description', { name: 'Otros', Icon: More })
     p.set('items', [
         { name: 'Marcas', route: '/brands', Icon: Apple },
-      
+
     ])
     return p
 }
@@ -50,7 +50,10 @@ export const menuList = [
 
 
 export const regularMenuList = [
-
+    { name: 'Dashboard', route: '/', Icon: Dashboard },
+    // { name: 'Asignaciones', route: '/allocations', Icon: LocalShippingIcon },
+    // { name: 'Detalles de Usuario', route: '/users', Icon: SupervisedUserCircle },
+    { name: 'perfil', route: '/profile', Icon: AccountCircle },
 ]
 
 export const supportMenuList = [
