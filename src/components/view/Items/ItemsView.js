@@ -50,10 +50,10 @@ export const ItemsView = () => {
             }
         },
         {
-            field: 'allocations', headerName: 'Estatus', width: 200, type: 'singleSelect',
+            field: 'allocation', headerName: 'Estatus', width: 200, type: 'singleSelect',
             // valueOptions: settings.status?.map(e => ({ value: e.id, label: e.name })) || [],
-            valueFormatter: (allocations) => {
-                const label = (Array.isArray(allocations) && allocations.length !== 0) ? 'ASIGNADO' : 'NO ASIGNADO'
+            valueFormatter: ({value}) => {
+                const label = (value) ? 'ASIGNADO' : 'NO ASIGNADO'
                 return label
             }
         },
