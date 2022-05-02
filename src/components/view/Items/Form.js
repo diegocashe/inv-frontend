@@ -1,4 +1,4 @@
-import { Container, Box, Button, Stack, TextField, DialogActions, DialogContent, Autocomplete, Typography, LinearProgress } from '@mui/material';
+import { Container, Box, Button, Stack, TextField, DialogActions, DialogContent, Autocomplete, LinearProgress } from '@mui/material';
 import { Controller, useWatch } from 'react-hook-form';
 import { Edit } from '@mui/icons-material';
 import { LoadingButton } from '@mui/lab';
@@ -211,13 +211,38 @@ export const Form = ({ onSubmit, control, errors, onCloseDialog, settings, isLoa
                         <Controller
                             name='active_code'
                             control={control}
-                            rules={{ required: true, }}
+                            rules={{ 
+                                required: true,
+                                pattern: /^CBZ-[0-9]{5}$/gm
+                             }}
                             render={({ field }) =>
                                 <TextField
                                     sx={{ flexGrow: 1 }}
                                     label='Código de activo' id='active_code' {...field}
                                     error={!!errors.active_code?.type}
-                                    helperText={errors.active_code?.type === 'required' && "El Código de activo es requerido"} />
+                                    helperText={(()=>{
+                                        if(errors.active_code?.type === 'required'){
+                                            return "El Código de activo es requerido"
+                                        }
+
+                                        if(errors.active_code?.type === 'pattern'){
+                                            return "Ingrese un código de activo válido Ej BBZ"
+                                        }
+
+                                    })()} 
+
+                                    onChange={(e)=>{
+                                        const regex = /^CBZ-/gm;
+                                        let value = e.target.value
+                                        if(!regex.test(value)){
+                                            value = `CBZ-${value}`
+                                        }
+                                        field.onChange(value)
+                                    }}
+
+
+
+                                    />
                             }
                         />
 

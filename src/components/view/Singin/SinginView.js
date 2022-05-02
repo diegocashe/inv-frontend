@@ -24,8 +24,9 @@ export const SinginView = () => {
         setOnLoading(true)
         const { access_token , id} = await post(data)
         if (access_token) {
+            
             setAuthToken(access_token)
-            await refreshProfile(id)
+            await refreshProfile(id);
             setOnLoading(false)
             navigate('/')
         }

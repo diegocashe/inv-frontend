@@ -54,20 +54,37 @@ export const Form = ({ onSubmit, control, errors, settings, isLoading }) => {
                 <Controller
                     name='email'
                     control={control}
-                    rules={{ required: true, }}
+                    rules={{ 
+                        required: true,
+                        pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+                     }}
 
                     render={({ field }) =>
                         <TextField
+                            // type={'email'}
                             sx={{ flexGrow: 1 }}
                             label='Correo electrónico' id='email' {...field}
                             error={!!errors.email?.type}
-                            helperText={errors.email?.type === 'required' && "El correo es requerido"} />
+                            helperText={
+                                (() => {
+                                    if(errors.email?.type === 'required'){
+                                        return "El correo es requerido"
+                                    } 
+                                    if(errors.email?.type === 'pattern'){
+                                        return "ingrese un correo valido"
+                                    }
+                                })()
+                            } />
                     }
                 />
                 <Controller
                     name='nacional_identify'
                     control={control}
-                    rules={{ required: true, }}
+                    mas
+                    rules={{ 
+                        required: true,
+                        pattern: /^[0-9]{5,9}$/gi
+                     }}
 
                     render={({ field }) =>
                         <TextField

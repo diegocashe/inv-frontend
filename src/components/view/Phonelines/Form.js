@@ -49,13 +49,25 @@ export const Fields = ({ control, errors, operators }) => {
                 <Controller
                     name='number'
                     control={control}
-                    rules={{ required: true, }}
+                    rules={{ 
+                        required: true,
+                        pattern: /^(?:0412|0414|0416|0424)[0-9]{7}$/gm
+                     }}
                     render={({ field }) =>
                         <TextField
                             fullWidth
                             label='Número telefónico' id='number' {...field}
                             error={!!errors.number?.type}
-                            helperText={errors.number?.type === 'required' && "El Número es requerido"} />
+                            helperText={
+                                (()=>{
+                                    if(errors.number?.type === 'required'){
+                                        return 'Agregue su número telefonico'
+                                    }
+                                    if(errors.number?.type === 'pattern'){
+                                        return 'Ingrese un número válido'
+                                    }
+                                })()} 
+                                />
                     }
                 />
 
